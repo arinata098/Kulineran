@@ -1,0 +1,23 @@
+version: '3'
+services:
+  jsonplaceholder:
+    build:
+      context: ./kulineran-backend
+      dockerfile: Dockerfile-api
+    ports:
+      - "4000:4000"
+    container_name: jplaceh-api
+    volumes:
+      - ./kulineran-backend:/usr/src/app/kulineran-backend
+      - /usr/src/app/kulineran-backend/node_modules
+  kulineran-apps:
+    build:
+      context: ./kulineran-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    container_name: kulineran
+    volumes:
+      - ./kulineran-frontend:/usr/src/app/kulineran-frontend
+      - /usr/src/app/kulineran-frontend/node_modules
+  
